@@ -22,12 +22,27 @@ export default function SpreadCard() {
   }, []);
 
   // URL watcher to bypass SPA routing limitations and detect item changes.
+  // URL watcher to bypass SPA routing limitations and detect item changes.
   useEffect(() => {
     const checkUrl = () => {
-      const parts = window.location.pathname.split('/');
-      const slug = parts[parts.length - 1];
-      if (slug && slug !== currentSlug) setCurrentSlug(slug);
+      const path = window.location.pathname;
+      
+      // Verifica se o usuário realmente está na página de um item
+      if (path.includes('/items/')) {
+        const parts = path.split('/');
+        const slug = parts[parts.length - 1];
+        if (slug && slug !== currentSlug) {
+          setCurrentSlug(slug);
+        }
+      } else {
+        // Se o usuário saiu da página do item (foi pra Home, Perfil, etc), reseta e esconde o quadro
+        if (currentSlug !== '') {
+          setCurrentSlug('');
+          setIsValidItem(false);
+        }
+      }
     };
+    
     const interval = setInterval(checkUrl, 500);
     return () => clearInterval(interval);
   }, [currentSlug]);

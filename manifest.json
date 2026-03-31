@@ -24,7 +24,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["*://warframe.market/items/*"],
+      "matches": ["*://warframe.market/items/*", "*://*.warframe.market/*"],
       "js": ["src/content/index.tsx"]
     }
   ],
