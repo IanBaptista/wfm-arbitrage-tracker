@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "WF Market Tracker",
+  "version": "1.3.0",
+  "permissions": [
+    "storage",
+    "declarativeNetRequest"
+  ],
+  "host_permissions": [
+    "*://api.warframe.market/*"
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "regras_api_market",
+        "enabled": true,
+        "path": "public/rules.json"
+      }
+    ]
+  },
+  "background": {
+    "service_worker": "src/background/serviceWorker.ts",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://warframe.market/items/*"],
+      "js": ["src/content/index.tsx"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}

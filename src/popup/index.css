@@ -1,0 +1,9 @@
+body {
+  width: 400px;
+  height: 500px;
+  margin: 0;
+  padding: 16px;
+  background-color: #1e1e2e;
+  color: #cdd6f4;
+  font-family: Arial, sans-serif;
+}
